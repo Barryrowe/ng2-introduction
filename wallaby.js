@@ -7,6 +7,7 @@ module.exports = function (w) {
 
 	return {
 		files: [
+			{ pattern: 'node_modules/babel-polyfill/browser.js', instrument: false},
 			{ pattern: 'src/**/*.ts', load: false },
 			{ pattern: 'src/**/*spec.ts', ignore: true }
 		],
@@ -19,6 +20,8 @@ module.exports = function (w) {
 		compilers: {
 			'**/*.ts': w.compilers.typeScript({
 				typescript: require('typescript'),
+				emitDecoratorMetadata: true,
+				experimentalDecorators: true
 			})
 		},
 		postprocessor: webpackPostprocessor,
